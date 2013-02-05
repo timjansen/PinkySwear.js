@@ -9,7 +9,7 @@ my upcoming library Minified.js and should be perfect for embedding.
 ## Stats ##
 
 <table>
-<tr><th>Name</th><th>Type</th><th>Size</th><th></th></tr>
+<tr><th>Name</th><th>Type</th><th>Size</th></tr>
 <tr><td>pinkyswear.js</td><td>Source code</td><td>3510 bytes</td></tr>
 <tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>584 bytes</td></tr>
 <tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>339 bytes</td></tr>
@@ -28,11 +28,11 @@ The returned object has a Promises/A+ compatible then() implementation:
  
 The promise returned by pinkySwear() is a function. To fulfill the promise, call the function with true as first argument and
 an optional array of values to pass to the then() handler. By putting more than one value in the array, you can pass more than one
-value to the then() handlers. Here an example to fulfill a promsise, this time with only one argument: 
+value to the then() handlers. Here an example to fulfill a promise, this time with only one argument: 
 >         promise(true, [42]);
  
-When the promise has been rejected, call it with false. Again, there may be more than one argument for the then() handler:
->         promise(true, [6, 6, 6]);
+When the promise has been rejected, call it with false as first argument:
+>         promise(false, [6, 6, 6]);
  
 PinkySwear has two convenience functions. always(func) is the same as then(func, func) and thus will always be called, no matter what the
 promises final state is:
