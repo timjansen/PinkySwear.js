@@ -9,8 +9,10 @@ my upcoming library Minified.js and should be perfect for embedding.
 ## Stats ##
 
 <table>
-<tr><th>Name</th><th>Source code</th><th>Closure / Advanced Optimization</th><th>Compiled + GZip'd</th></tr>
-<tr><td>pinkyswear.js</td><td>3498 bytes</td><td>575 bytes</td><td>378 bytes</td></tr>
+<tr><th>Name</th><th>Type</th><th>Size</th><th></th></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>3510 bytes</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>584 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>339 bytes</td></tr>
 </table>
  
  

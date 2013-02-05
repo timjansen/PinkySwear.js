@@ -1,4 +1,7 @@
-// Tests helper.js with the Promises / A+ Test Suite (https://github.com/promises-aplus/promises-tests)
+// Tests pinkyswear.js with the Promises / A+ Test Suite (https://github.com/promises-aplus/promises-tests)
+// Requires node.js installation.
+// Run "npm install promises-aplus-tests" in this dir to install, and then run with "node promise-test.js"
+
 
 var promisesAplusTests = require("promises-aplus-tests");
 
@@ -8,20 +11,23 @@ var includeInThisContext = function(path) {
     var code = fs.readFileSync(path);
     vm.runInThisContext(code, path);
 }.bind(this);
-includeInThisContext(__dirname+"/helper.js");
+includeInThisContext(__dirname+"/pinkyswear.min.js");
+
+console.log(pinkySwear);
+console.log(pinkySwear());
 
 var adapter = {
-		fulfilled: function(value) { var p = hhPromise(); p.set(true, [value]); return p; },
-		rejected: function(reason) { var p = hhPromise(); p.set(false, [reason]); return p;},
+		fulfilled: function(value) { var p = pinkySwear(); p(true, [value]); return p; },
+		rejected: function(reason) { var p = pinkySwear(); p(false, [reason]); return p;},
 		pending: function() { 
-			var p = hhPromise();
+			var p = pinkySwear();
 			return {
 				promise: p, 
 				fulfill: function(value) {
-					p.set(true, [value]);
+					p(true, [value]);
 				},
 				reject: function(reason) {
-					p.set(false, [reason]);
+					p(false, [reason]);
 				}
 			};
 		}

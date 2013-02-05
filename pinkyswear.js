@@ -39,8 +39,8 @@ pinkySwear = (function() {
 		return typeof f == 'function';
 	}
 	function defer(callback) {
-		if (typeof process != 'undefined' && process.nextTick)
-			process.nextTick(callback);
+		if (typeof process != 'undefined' && process['nextTick'])
+			process['nextTick'](callback);
 		else
 			window.setTimeout(callback, 0);
 	}
@@ -50,7 +50,7 @@ pinkySwear = (function() {
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
 			
-		var set = function (newState, newValues) {
+		var set = function promise(newState, newValues) {
 			if (state == null) {
 				state = newState;
 				values = newValues;
@@ -60,15 +60,15 @@ pinkySwear = (function() {
 				});
 			}
 		};
-		var then = set['then'] = function(onFulfilled, onRejected) {
+		set['then'] = function(onFulfilled, onRejected) {
 			var newPromise = pinkySwear();
 			var callCallbacks = function() {
 				try {
 					var f = (state ? onFulfilled : onRejected);
 					if (isFunction(f)) {
 						var r = f.apply(null, values);
-						if (r && isFunction(r.then))
-							r.then(function(value){newPromise(true,[value]);}, function(value){newPromise(false,[value]);});
+						if (r && isFunction(r['then']))
+							r['then'](function(value){newPromise(true,[value]);}, function(value){newPromise(false,[value]);});
 						else
 							newPromise(true, [r]);
 					}
@@ -87,10 +87,11 @@ pinkySwear = (function() {
 		};
 
 		// always(func) is the same as then(func, func)
-		set['always'] = function(func) { return then(func, func); };
+		set['always'] = function(func) { return set['then'](func, func); };
 
 		// error(func) is the same as then(0, func)
-		set['error'] = function(func) { return then(0, func); };
+		set['error'] = function(func) { return set['then'](0, func); };
 		return set;
-	}
-});
+	};
+})();
+
