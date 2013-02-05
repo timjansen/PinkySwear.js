@@ -14,7 +14,7 @@ my upcoming library Minified.js and should be perfect for embedding.
 </table>
  
  
- ## API ##
+## API ##
  
 PinkySwear has just four functions.
 
