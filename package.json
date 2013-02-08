@@ -1,0 +1,24 @@
+{
+  "name": "pinkyswear.js",
+  "version": "0.0.1",
+  "description": "Minimalistic Promises/A+ implementation, <350 bytes",
+  "main": "pinkyswear.js",
+  "dependencies": {
+    "promises-aplus-tests": "~1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node promise-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/timjansen/PinkySwear.js.git"
+  },
+  "keywords": [
+    "promises"
+  ],
+  "author": "Tim Jansen",
+  "license": "Public Domain",
+  "readmeFilename": "README.md",
+  "gitHead": "44f973cb770ff232b35227de9873440810d6e0aa"
+}

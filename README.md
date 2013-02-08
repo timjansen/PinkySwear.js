@@ -34,7 +34,7 @@ value to the then() handlers. Here an example to fulfill a promise, this time wi
 When the promise has been rejected, call it with false as first argument:
 >         promise(false, [6, 6, 6]);
  
-PinkySwear has two convenience functions. always(func) is the same as then(func, func) and thus will always be called, no matter what the
+PinkySwear has two convenience functions. always(func1) is the same as then(func1, func1) and thus will always be called, no matter what the
 promises final state is:
 >         promise.always(function(value) { alert("Done!"); });
  
