@@ -2,7 +2,7 @@ PinkySwear.js
 ==============
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
-Google Closure Compiler and gzipping it weighs less than 350 bytes. It is based on the implementation for 
+Google Closure Compiler and gzipping it weighs less than 400 bytes. It is based on the implementation for 
 my upcoming library Minified.js and should be perfect for embedding.
  
  
@@ -10,15 +10,30 @@ my upcoming library Minified.js and should be perfect for embedding.
 
 <table>
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
-<tr><td>pinkyswear.js</td><td>Source code</td><td>3510 bytes</td></tr>
-<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>584 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>339 bytes</td></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>3610 bytes</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>671 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>375 bytes</td></tr>
 </table>
- 
+
+
+## How to Include / Node.js ##
+
+You can install PinkySwear.js using npm:
+> npm install pinkyswear
+
+Use require() to get the initial function:
+> var pinkySwear = require('pinkyswear');
+
+
+## How to Include / Browser ##
+
+To use PinkySwear in a browser, just include it with a script tag. You probably want to use the minified version in a browser:
+> <script type="text/javascript" src="path/to/pinkyswear.min.js"></script>
+
  
 ## API ##
  
-PinkySwear has just four functions.
+PinkySwear has just five functions.
 
 To create a new promise in pending state, call pinkySwear():
 >         var promise = pinkySwear();

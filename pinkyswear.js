@@ -34,7 +34,7 @@
  * error(func) is the same as then(0, func), and thus the handler will only be called on error:
  *          promise.error(function(value) { alert("Failure!"); });
  */
-pinkySwear = (function() {
+(function(target) {
 	function isFunction(f,o) {
 		return typeof f == 'function';
 	}
@@ -45,7 +45,7 @@ pinkySwear = (function() {
 			window.setTimeout(callback, 0);
 	}
 	
-	return function pinkySwear() {
+	target[0][target[1]] = function pinkySwear() {
 		var state;           // undefined/null = pending, true = fulfilled, false = rejected
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
@@ -93,5 +93,5 @@ pinkySwear = (function() {
 		set['error'] = function(func) { return set['then'](0, func); };
 		return set;
 	};
-})();
+})(typeof module === 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
 
