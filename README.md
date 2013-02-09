@@ -28,7 +28,7 @@ Use require() to get the initial function:
 ## How to Include / Browser ##
 
 To use PinkySwear in a browser, just include it with a script tag. You probably want to use the minified version in a browser:
-> <script type="text/javascript" src="path/to/pinkyswear.min.js"></script>
+> &lt;script type="text/javascript" src="path/to/pinkyswear.min.js">&lt;/script>
 
  
 ## API ##
