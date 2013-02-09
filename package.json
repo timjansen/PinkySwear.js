@@ -1,5 +1,5 @@
 {
-  "name": "pinkyswear.js",
+  "name": "pinkyswear",
   "version": "0.0.2",
   "description": "Minimalistic Promises/A+ implementation, <350 bytes",
   "main": "pinkyswear.js",
