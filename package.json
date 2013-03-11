@@ -1,7 +1,7 @@
 {
   "name": "pinkyswear",
   "version": "0.0.2",
-  "description": "Minimalistic Promises/A+ implementation, <350 bytes",
+  "description": "Minimalistic Promises/A+ implementation, <400 bytes",
   "main": "pinkyswear.js",
   "dependencies": {
     "promises-aplus-tests": "~1.1.0"

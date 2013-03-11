@@ -33,6 +33,9 @@
  *
  * error(func) is the same as then(0, func), and thus the handler will only be called on error:
  *          promise.error(function(value) { alert("Failure!"); });
+ *          
+ * 
+ * https://github.com/timjansen/PinkySwear.js
  */
 (function(target) {
 	function isFunction(f,o) {
