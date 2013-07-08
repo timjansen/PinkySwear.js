@@ -3,7 +3,7 @@ PinkySwear.js
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
 Google Closure Compiler and gzipping it weighs less than 400 bytes. It is based on the implementation for 
-my upcoming library Minified.js and should be perfect for embedding. In other words, you use it as a
+my upcoming library Minified.js and should be perfect for embedding. In other words, you can use it as a
 lightweight dependency for your library if you need to return a promise. It is not intended as a stand-alone
 library for more complex applications, and therefore does not support assimilation of other promises.
  
