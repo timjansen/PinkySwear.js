@@ -57,3 +57,11 @@ promises final state is:
  
 error(func) is the same as then(0, func), and thus the handler will only be called on error:
 >         promise.error(function(value) { alert("Failure!"); });
+
+
+
+## Licensing ##
+
+Public Domain. Use, modify and distribute it any way you like. No attribution required.
+To the extent possible under law, Tim Jansen has waived all copyright and related or neighboring rights to PinkySwear.
+Please see http://creativecommons.org/publicdomain/zero/1.0/
