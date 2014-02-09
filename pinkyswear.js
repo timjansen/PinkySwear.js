@@ -57,43 +57,47 @@
 		var state;           // undefined/null = pending, true = fulfilled, false = rejected
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
-			
+
 		var set = function(newState, newValues) {
-			if (state == null) {
-				state = newState;
-				values = newValues;
-				defer(function() {
-					for (var i = 0; i < deferred.length; i++)
-						deferred[i]();
-				});
+			if (state == null && newState != null) {
+				var x = newValues[0], then, cbCalled=0; // TODO: test cbCalled as true/false
+				try {
+					
+					if (newState && x!=null && (isFunction(x) || isObject(x)) && isFunction(then = x['then'])) {
+						if (x === set)
+							throw new TypeError();
+						then.call(x, function(value) { if(!cbCalled++) set(true, [value]); }, function(value) { if(!cbCalled++) set(false, [value]); });
+						return null;
+					}
+					else {
+						state = newState;
+						values = newValues;
+					}
+				}
+				catch(e) {
+					if(!cbCalled++) {
+						state = false;
+						values = [e];
+					}
+					else
+						return;
+				}
+				if (deferred.length)
+					defer(function() {
+						for (var i = 0; i < deferred.length; i++)
+							deferred[i]();
+					});
 			}
+			return state;
 		};
+		
 		set['then'] = function(onFulfilled, onRejected) {
 			var promise2 = pinkySwear();
 			var callCallbacks = function() {
 				try {
 					var f = (state ? onFulfilled : onRejected);
-					if (isFunction(f)) {
-						function resolve(x) {
-console.log('resolve(x)=', x);
-							try {
-								var then;
-								if (x!=null && (isFunction(x) || isObject(x)) && isFunction(then = x['then'])) {
-										if (x === promise2)
-											throw new TypeError();
-										then.call(x, resolve, function(value) { promise2(false, [value]); });
-console.log(' is thennable');
-								}
-								else
-									promise2(true, [x]);
-							}
-							catch(e) {
-console.log(' is thennable');
-								promise2(false, [e]);
-							}
-						}
-						resolve(f.apply(undef, values));
-					}
+					if (isFunction(f))
+						promise2(true, [f.apply(undef, values)]);
 					else
 						promise2(state, values);
 				}

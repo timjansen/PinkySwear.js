@@ -15,13 +15,13 @@ var pinkySwearSrc = require("./" + process.argv[2]);
 
 function getAdapter(pinkySwear) {
 	return adapter = {
-			fulfilled: function(value) { var p = pinkySwear(); p(true, [value]); return p; },
+			resolved: function(value) { var p = pinkySwear(); p(true, [value]); return p; },
 			rejected: function(reason) { var p = pinkySwear(); p(false, [reason]); return p;},
-			pending: function() { 
+			deferred: function() { 
 				var p = pinkySwear();
 				return {
 					promise: p, 
-					fulfill: function(value) {
+					resolve: function(value) {
 						p(true, [value]);
 					},
 					reject: function(reason) {
