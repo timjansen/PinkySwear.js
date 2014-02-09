@@ -38,8 +38,13 @@
  * https://github.com/timjansen/PinkySwear.js
  */
 (function(target) {
-	function isFunction(f,o) {
+	var undef; // remember current 'this'. required to call onFulfilled/onRehected as true functions 
+	
+	function isFunction(f) {
 		return typeof f == 'function';
+	}
+	function isObject(f) {
+		return typeof f == 'object';
 	}
 	function defer(callback) {
 		if (typeof process != 'undefined' && process['nextTick'])
@@ -53,7 +58,7 @@
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
 			
-		var set = function promise(newState, newValues) {
+		var set = function(newState, newValues) {
 			if (state == null) {
 				state = newState;
 				values = newValues;
@@ -64,29 +69,43 @@
 			}
 		};
 		set['then'] = function(onFulfilled, onRejected) {
-			var newPromise = pinkySwear();
+			var promise2 = pinkySwear();
 			var callCallbacks = function() {
 				try {
 					var f = (state ? onFulfilled : onRejected);
 					if (isFunction(f)) {
-						var r = f.apply(null, values);
-						if (r && isFunction(r['then']))
-							r['then'](function(value){newPromise(true,[value]);}, function(value){newPromise(false,[value]);});
-						else
-							newPromise(true, [r]);
+						function resolve(x) {
+console.log('resolve(x)=', x);
+							try {
+								var then;
+								if (x!=null && (isFunction(x) || isObject(x)) && isFunction(then = x['then'])) {
+										if (x === promise2)
+											throw new TypeError();
+										then.call(x, resolve, function(value) { promise2(false, [value]); });
+console.log(' is thennable');
+								}
+								else
+									promise2(true, [x]);
+							}
+							catch(e) {
+console.log(' is thennable');
+								promise2(false, [e]);
+							}
+						}
+						resolve(f.apply(undef, values));
 					}
 					else
-						newPromise(state, values);
+						promise2(state, values);
 				}
 				catch (e) {
-					newPromise(false, [e]);
+					promise2(false, [e]);
 				}
 			};
 			if (state != null)
 				defer(callCallbacks);
 			else
 				deferred.push(callCallbacks);    		
-			return newPromise;
+			return promise2;
 		};
 
 		// always(func) is the same as then(func, func)
