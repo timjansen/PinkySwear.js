@@ -1,13 +1,13 @@
 /*
- * PinkySwear.js - Minimalistic implementation of the Promises/A+ spec
+ * PinkySwear.js 2.0 - Minimalistic implementation of the Promises/A+ spec
  * 
  * Public Domain. Use, modify and distribute it any way you like. No attribution required.
  *
  * NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.
  *
  * PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
- * Google Closure Compiler and gzipping it weighs less than 350 bytes. It is based on the implementation for 
- * my upcoming library Minified.js and should be perfect for embedding.
+ * Google Closure Compiler and gzipping it weighs less than 500 bytes. It is based on the implementation for 
+ * Minified.js and should be perfect for embedding. 
  *
  *
  * PinkySwear has just four functions.
@@ -26,6 +26,10 @@
  *
  * When the promise has been rejected, call it with false. Again, there may be more than one argument for the then() handler:
  *         promise(true, [6, 6, 6]);
+ *         
+ * You can obtain the promise's current state by calling the function without arguments. It will be true if fulfilled,
+ * false if rejected, and otherwise undefined.
+ * 		   var state = promise();
  *
  * PinkySwear has two convenience functions. always(func) is the same as then(func, func) and thus will always be called, no matter what the
  * promises final state is:
@@ -38,7 +42,7 @@
  * https://github.com/timjansen/PinkySwear.js
  */
 (function(target) {
-	var undef; // remember current 'this'. required to call onFulfilled/onRehected as true functions 
+	var undef;
 	
 	function isFunction(f) {
 		return typeof f == 'function';
@@ -50,7 +54,7 @@
 		if (typeof process != 'undefined' && process['nextTick'])
 			process['nextTick'](callback);
 		else
-			window.setTimeout(callback, 0);
+			setTimeout(callback, 0);
 	}
 	
 	target[0][target[1]] = function pinkySwear() {
@@ -60,28 +64,8 @@
 
 		var set = function(newState, newValues) {
 			if (state == null && newState != null) {
-				var x = newValues[0], then, cbCalled=0; // TODO: test cbCalled as true/false
-				try {
-					
-					if (newState && x!=null && (isFunction(x) || isObject(x)) && isFunction(then = x['then'])) {
-						if (x === set)
-							throw new TypeError();
-						then.call(x, function(value) { if(!cbCalled++) set(true, [value]); }, function(value) { if(!cbCalled++) set(false, [value]); });
-						return null;
-					}
-					else {
-						state = newState;
-						values = newValues;
-					}
-				}
-				catch(e) {
-					if(!cbCalled++) {
-						state = false;
-						values = [e];
-					}
-					else
-						return;
-				}
+				state = newState;
+				values = newValues;
 				if (deferred.length)
 					defer(function() {
 						for (var i = 0; i < deferred.length; i++)
@@ -91,15 +75,32 @@
 			return state;
 		};
 		
-		set['then'] = function(onFulfilled, onRejected) {
+		set['then'] = function (onFulfilled, onRejected) {
 			var promise2 = pinkySwear();
 			var callCallbacks = function() {
-				try {
-					var f = (state ? onFulfilled : onRejected);
-					if (isFunction(f))
-						promise2(true, [f.apply(undef, values)]);
-					else
-						promise2(state, values);
+	    		try {
+	    			var f = (state ? onFulfilled : onRejected);
+	    			if (isFunction(f)) {
+		   				function resolve(x) {
+		   					try {
+			   					var then, cbCalled = 0;
+				   				if (x && (isObject(x) || isFunction(x)) && isFunction(then = x['then'])) {
+										if (x === promise2)
+											throw new TypeError();
+										then['call'](x, function(x) { if (!cbCalled++) resolve(x); } , function(value){ if (!cbCalled++) promise2(false,[value]);});
+				   				}
+				   				else
+				   					promise2(true, [x]);
+		   					}
+		   					catch(e) {
+		   						if (!cbCalled++) 
+		   							promise2(false, [e]);
+		   					}
+		   				}
+		   				resolve(f.apply(undef, values));
+		   			}
+		   			else
+		   				promise2(state, values);
 				}
 				catch (e) {
 					promise2(false, [e]);

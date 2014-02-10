@@ -1,20 +1,30 @@
-PinkySwear.js
-==============
+PinkySwear.js 2.0
+==================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
-Google Closure Compiler and gzipping it weighs less than 400 bytes. It is based on the implementation for 
-my upcoming library Minified.js and should be perfect for embedding. In other words, you can use it as a
+Google Closure Compiler and gzipping it weighs less than 500 bytes. It is based on the implementation for 
+<a href="http://minifiedjs.com">Minified.js</a> and should be perfect for embedding. In other words, you can use it as a
 lightweight dependency for your library if you need to return a promise. It is not intended as a stand-alone
 library for more complex applications, and therefore does not support assimilation of other promises.
+Minified's implementation does support assimilation though.
+ 
+## Release History ##
+
+#####Version 2.0, released Feb 10, 2014
+Passes Promises/A+ Compliance Test 2.0.3. Allows obtaining state by calling promise function without arguments.
+
+#####Version 1.0, released Feb 09, 2013
+First release. Passes Promises/A+ Compliance Test 1.10.0 with one exception (PinkySwear is function-based, which is
+allowed in the spec, but not in the old test suite).
  
  
 ## Stats ##
 
 <table>
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
-<tr><td>pinkyswear.js</td><td>Source code</td><td>3610 bytes</td></tr>
-<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>671 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>375 bytes</td></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>4366 bytes</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>831 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>458 bytes</td></tr>
 </table>
 
 
@@ -50,6 +60,10 @@ value to the then() handlers. Here an example to fulfill a promise, this time wi
  
 When the promise has been rejected, call it with false as first argument:
 >         promise(false, [6, 6, 6]);
+
+You can obtain the promise's current state by calling the function without arguments. It will be true if fulfilled,
+false if rejected, and otherwise undefined.
+>		  var state = promise();
  
 PinkySwear has two convenience functions. always(func1) is the same as then(func1, func1) and thus will always be called, no matter what the
 promises final state is:
