@@ -97,7 +97,7 @@
 		   							promise2(false, [e]);
 		   					}
 		   				}
-		   				resolve(f.apply(undef, values));
+		   				resolve(f.apply(undef, values || []));
 		   			}
 		   			else
 		   				promise2(state, values);
