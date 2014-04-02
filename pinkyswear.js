@@ -82,15 +82,17 @@
 	    			var f = (state ? onFulfilled : onRejected);
 	    			if (isFunction(f)) {
 		   				function resolve(x) {
+						    var then, cbCalled = 0;
 		   					try {
-			   					var then, cbCalled = 0;
 				   				if (x && (isObject(x) || isFunction(x)) && isFunction(then = x['then'])) {
 										if (x === promise2)
 											throw new TypeError();
-										then['call'](x, function(x) { if (!cbCalled++) resolve(x); } , function(value){ if (!cbCalled++) promise2(false,[value]);});
+										then['call'](x,
+											function() { if (!cbCalled++) resolve.apply(undef,arguments); } ,
+											function(value){ if (!cbCalled++) promise2(false,[value]);});
 				   				}
 				   				else
-				   					promise2(true, [x]);
+				   					promise2(true, arguments);
 		   					}
 		   					catch(e) {
 		   						if (!cbCalled++) 
