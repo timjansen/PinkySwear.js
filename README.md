@@ -10,6 +10,10 @@ Minified's implementation does support assimilation though.
  
 ## Release History ##
 
+#####Version 2.0.1, released Apr 3, 2014
+- Fixed PinkySwear on IE8 which can't handle apply() without arguments (thanks, Luis Nabais)
+- Fix and test case for PinkySwear's multi-arguments extension (thanks, Carl-Erik Kopseng)
+
 #####Version 2.0, released Feb 10, 2014
 Passes Promises/A+ Compliance Test 2.0.3. Allows obtaining state by calling promise function without arguments.
 
@@ -22,11 +26,10 @@ allowed in the spec, but not in the old test suite).
 
 <table>
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
-<tr><td>pinkyswear.js</td><td>Source code</td><td>4366 bytes</td></tr>
-<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>831 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>458 bytes</td></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>4418 bytes</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>861 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>474 bytes</td></tr>
 </table>
-
 
 ## How to Include / Node.js ##
 
