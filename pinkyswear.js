@@ -43,7 +43,7 @@
  */
 (function(target) {
 	var undef;
-	
+
 	function isFunction(f) {
 		return typeof f == 'function';
 	}
@@ -51,12 +51,14 @@
 		return typeof f == 'object';
 	}
 	function defer(callback) {
-		if (typeof process != 'undefined' && process['nextTick'])
+		if(setImmediate)
+			setImmediate(callback);
+		else if (typeof process != 'undefined' && process['nextTick'])
 			process['nextTick'](callback);
 		else
 			setTimeout(callback, 0);
 	}
-	
+
 	target[0][target[1]] = function pinkySwear() {
 		var state;           // undefined/null = pending, true = fulfilled, false = rejected
 		var values = [];     // an array of values as arguments for the then() handlers
@@ -74,7 +76,7 @@
 			}
 			return state;
 		};
-		
+
 		set['then'] = function (onFulfilled, onRejected) {
 			var promise2 = pinkySwear();
 			var callCallbacks = function() {
@@ -95,7 +97,7 @@
 				   					promise2(true, arguments);
 		   					}
 		   					catch(e) {
-		   						if (!cbCalled++) 
+		   						if (!cbCalled++)
 		   							promise2(false, [e]);
 		   					}
 		   				}
@@ -111,7 +113,7 @@
 			if (state != null)
 				defer(callCallbacks);
 			else
-				deferred.push(callCallbacks);    		
+				deferred.push(callCallbacks);
 			return promise2;
 		};
 
