@@ -10,6 +10,9 @@ Minified's implementation does support assimilation though.
  
 ## Release History ##
 
+#####Version 2.0.2, released May 10, 2014
+- Use setImmediate() on platforms that support it (thanks, Carl-Erik Kopseng)
+
 #####Version 2.0.1, released Apr 3, 2014
 - Fixed PinkySwear on IE8 which can't handle apply() without arguments (thanks, Luis Nabais)
 - Fix and test case for PinkySwear's multi-arguments extension (thanks, Carl-Erik Kopseng)
@@ -26,9 +29,9 @@ allowed in the spec, but not in the old test suite).
 
 <table>
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
-<tr><td>pinkyswear.js</td><td>Source code</td><td>4418 bytes</td></tr>
-<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>861 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>474 bytes</td></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>4480 bytes</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>909 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>486 bytes</td></tr>
 </table>
 
 ## How to Include / Node.js ##

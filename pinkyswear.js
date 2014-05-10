@@ -51,7 +51,7 @@
 		return typeof f == 'object';
 	}
 	function defer(callback) {
-		if(setImmediate)
+		if (typeof setImmediate != 'undefined')
 			setImmediate(callback);
 		else if (typeof process != 'undefined' && process['nextTick'])
 			process['nextTick'](callback);
@@ -124,5 +124,5 @@
 		set['error'] = function(func) { return set['then'](0, func); };
 		return set;
 	};
-})(typeof module === 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
+})(typeof module == 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
 
