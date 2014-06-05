@@ -1,6 +1,11 @@
 PinkySwear.js 2.0
 ==================
 
+<a href="http://promisesaplus.com/">
+    <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
+         title="Promises/A+ 1.1 compliant" align="right" />
+</a>
+
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
 Google Closure Compiler and gzipping it weighs less than 500 bytes. It is based on the implementation for 
 <a href="http://minifiedjs.com">Minified.js</a> and should be perfect for embedding. In other words, you can use it as a
@@ -9,6 +14,11 @@ library for more complex applications, and therefore does not support assimilati
 Minified's implementation does support assimilation though.
  
 ## Release History ##
+
+#####Version 2.1 released June 6, 2014
+- Removed always() and error(), since they were not in the spirit of a minimal implementation.
+- Updated Promises/A+ Compliance Test to 2.0.4
+
 
 #####Version 2.0.2, released May 10, 2014
 - Use setImmediate() on platforms that support it (thanks, Carl-Erik Kopseng)
@@ -29,9 +39,9 @@ allowed in the spec, but not in the old test suite).
 
 <table>
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
-<tr><td>pinkyswear.js</td><td>Source code</td><td>4480 bytes</td></tr>
-<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>909 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>486 bytes</td></tr>
+<tr><td>pinkyswear.js</td><td>Source code</td><td>about 4kB</td></tr>
+<tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>828 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>460 bytes</td></tr>
 </table>
 
 ## How to Include / Node.js ##
@@ -71,14 +81,6 @@ You can obtain the promise's current state by calling the function without argum
 false if rejected, and otherwise undefined.
 >		  var state = promise();
  
-PinkySwear has two convenience functions. always(func1) is the same as then(func1, func1) and thus will always be called, no matter what the
-promises final state is:
->         promise.always(function(value) { alert("Done!"); });
- 
-error(func) is the same as then(0, func), and thus the handler will only be called on error:
->         promise.error(function(value) { alert("Failure!"); });
-
-
 
 ## Licensing ##
 

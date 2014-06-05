@@ -1,5 +1,5 @@
 /*
- * PinkySwear.js 2.0 - Minimalistic implementation of the Promises/A+ spec
+ * PinkySwear.js 2.1 - Minimalistic implementation of the Promises/A+ spec
  * 
  * Public Domain. Use, modify and distribute it any way you like. No attribution required.
  *
@@ -29,15 +29,7 @@
  *         
  * You can obtain the promise's current state by calling the function without arguments. It will be true if fulfilled,
  * false if rejected, and otherwise undefined.
- * 		   var state = promise();
- *
- * PinkySwear has two convenience functions. always(func) is the same as then(func, func) and thus will always be called, no matter what the
- * promises final state is:
- *          promise.always(function(value) { alert("Done!"); });
- *
- * error(func) is the same as then(0, func), and thus the handler will only be called on error:
- *          promise.error(function(value) { alert("Failure!"); });
- *          
+ * 		   var state = promise(); 
  * 
  * https://github.com/timjansen/PinkySwear.js
  */
@@ -116,12 +108,6 @@
 				deferred.push(callCallbacks);
 			return promise2;
 		};
-
-		// always(func) is the same as then(func, func)
-		set['always'] = function(func) { return set['then'](func, func); };
-
-		// error(func) is the same as then(0, func)
-		set['error'] = function(func) { return set['then'](0, func); };
 		return set;
 	};
 })(typeof module == 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
