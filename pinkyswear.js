@@ -10,7 +10,7 @@
  * Minified.js and should be perfect for embedding. 
  *
  *
- * PinkySwear has just four functions.
+ * PinkySwear has just three functions.
  *
  * To create a new promise in pending state, call pinkySwear():
  *         var promise = pinkySwear();

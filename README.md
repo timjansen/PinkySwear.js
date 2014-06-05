@@ -1,14 +1,13 @@
-PinkySwear.js 2.0
-==================
-
 <a href="http://promisesaplus.com/">
     <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
          title="Promises/A+ 1.1 compliant" align="right" />
 </a>
+PinkySwear.js 2.1
+==================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
-Google Closure Compiler and gzipping it weighs less than 500 bytes. It is based on the implementation for 
-<a href="http://minifiedjs.com">Minified.js</a> and should be perfect for embedding. In other words, you can use it as a
+Google Closure Compiler and gzipping it weighs less than 500 bytes. It is originally based on the implementation for 
+<a href="http://minifiedjs.com">Minified.js</a> and is for embedding. In other words, you can use it as a
 lightweight dependency for your library if you need to return a promise. It is not intended as a stand-alone
 library for more complex applications, and therefore does not support assimilation of other promises.
 Minified's implementation does support assimilation though.
@@ -18,7 +17,6 @@ Minified's implementation does support assimilation though.
 #####Version 2.1 released June 6, 2014
 - Removed always() and error(), since they were not in the spirit of a minimal implementation.
 - Updated Promises/A+ Compliance Test to 2.0.4
-
 
 #####Version 2.0.2, released May 10, 2014
 - Use setImmediate() on platforms that support it (thanks, Carl-Erik Kopseng)
@@ -61,7 +59,7 @@ To use PinkySwear in a browser, just include it with a script tag. You probably 
  
 ## API ##
  
-PinkySwear has just five functions.
+PinkySwear has just three functions.
 
 To create a new promise in pending state, call pinkySwear():
 >         var promise = pinkySwear();
@@ -69,7 +67,7 @@ To create a new promise in pending state, call pinkySwear():
 The returned object has a Promises/A+ compatible then() implementation:
 >         promise.then(function(value) { alert("Success!"); }, function(value) { alert("Failure!"); });
  
-The promise returned by pinkySwear() is a function. To fulfill the promise, call the function with true as first argument and
+The promise returned by pinkySwear() itself is also a function. To fulfill the promise, call the function with true as first argument and
 an optional array of values to pass to the then() handler. By putting more than one value in the array, you can pass more than one
 value to the then() handlers. Here an example to fulfill a promise, this time with only one argument: 
 >         promise(true, [42]);
