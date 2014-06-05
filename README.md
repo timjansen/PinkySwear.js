@@ -67,7 +67,7 @@ To create a new promise in pending state, call pinkySwear():
 The returned object has a Promises/A+ compatible then() implementation:
 >         promise.then(function(value) { alert("Success!"); }, function(value) { alert("Failure!"); });
  
-The promise returned by pinkySwear() itself is also a function. To fulfill the promise, call the function with true as first argument and
+The promise returned by pinkySwear() is a function itself. To fulfill the promise, call the function with true as first argument and
 an optional array of values to pass to the then() handler. By putting more than one value in the array, you can pass more than one
 value to the then() handlers. Here an example to fulfill a promise, this time with only one argument: 
 >         promise(true, [42]);
