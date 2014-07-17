@@ -2,8 +2,8 @@
     <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
          title="Promises/A+ 1.1 compliant" align="right" />
 </a>
-PinkySwear.js 2.1
-==================
+PinkySwear.js 2.1.1
+====================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
 Google Closure Compiler and gzipping it weighs less than 500 bytes. It is originally based on the implementation for 
@@ -13,6 +13,9 @@ library for more complex applications, and therefore does not support assimilati
 Minified's implementation does support assimilation though.
  
 ## Release History ##
+
+#####Version 2.1.1 released July 17, 2014
+- Added extend function to constructor (thanks, Zbyszek Tenerowicz)
 
 #####Version 2.1 released June 6, 2014
 - Removed always() and error(), since they were not in the spirit of a minimal implementation.
@@ -78,6 +81,8 @@ When the promise has been rejected, call it with false as first argument:
 You can obtain the promise's current state by calling the function without arguments. It will be true if fulfilled,
 false if rejected, and otherwise undefined.
 >		  var state = promise();
+
+You can extend a 
  
 
 ## Licensing ##
