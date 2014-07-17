@@ -51,7 +51,7 @@
 			setTimeout(callback, 0);
 	}
 
-	target[0][target[1]] = function pinkySwear() {
+	target[0][target[1]] = function pinkySwear(extend) {
 		var state;           // undefined/null = pending, true = fulfilled, false = rejected
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
@@ -108,6 +108,9 @@
 				deferred.push(callCallbacks);
 			return promise2;
 		};
+        if(extend){
+            set = extend(set);
+        }
 		return set;
 	};
 })(typeof module == 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
