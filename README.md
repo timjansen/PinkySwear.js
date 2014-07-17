@@ -82,7 +82,13 @@ You can obtain the promise's current state by calling the function without argum
 false if rejected, and otherwise undefined.
 >		  var state = promise();
 
-You can extend a 
+It is possible to extend PinkySwear's promise object with custom methods by specifying an extend function:
+>         function addHello(prom) { 
+>             prom.sayHello = function() { console.log('hello'); }; 
+>             return prom; 
+>         }
+>         var promise = pinkySwear(addHello);
+
  
 
 ## Licensing ##
