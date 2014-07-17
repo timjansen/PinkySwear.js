@@ -1,5 +1,5 @@
 /*
- * PinkySwear.js 2.1.1 - Minimalistic implementation of the Promises/A+ spec
+ * PinkySwear.js 2.2.1 - Minimalistic implementation of the Promises/A+ spec
  * 
  * Public Domain. Use, modify and distribute it any way you like. No attribution required.
  *

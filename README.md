@@ -2,7 +2,7 @@
     <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
          title="Promises/A+ 1.1 compliant" align="right" />
 </a>
-PinkySwear.js 2.1.1
+PinkySwear.js 2.2.1
 ====================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
