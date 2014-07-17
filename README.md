@@ -14,7 +14,7 @@ Minified's implementation does support assimilation though.
  
 ## Release History ##
 
-#####Version 2.1.1 released July 17, 2014
+#####Version 2.2.1 released July 17, 2014
 - Added extend function to constructor (thanks, Zbyszek Tenerowicz)
 
 #####Version 2.1 released June 6, 2014
