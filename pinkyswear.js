@@ -70,7 +70,7 @@
 		};
 
 		set['then'] = function (onFulfilled, onRejected) {
-			var promise2 = pinkySwear();
+			var promise2 = pinkySwear(extend);
 			var callCallbacks = function() {
 	    		try {
 	    			var f = (state ? onFulfilled : onRejected);
