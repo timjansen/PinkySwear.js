@@ -2,7 +2,7 @@
     <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
          title="Promises/A+ 1.1 compliant" align="right" />
 </a>
-PinkySwear.js 2.2.1
+PinkySwear.js 2.2.2
 ====================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
@@ -13,6 +13,9 @@ library for more complex applications, and therefore does not support assimilati
 Minified's implementation does support assimilation though.
  
 ## Release History ##
+
+#####Version 2.2.2 released July 30, 2014
+- Support extensions for promises created using then() (thanks, Zbyszek Tenerowicz)
 
 #####Version 2.2.1 released July 17, 2014
 - Added extend function to constructor (thanks, Zbyszek Tenerowicz)
@@ -42,7 +45,7 @@ allowed in the spec, but not in the old test suite).
 <tr><th>Name</th><th>Type</th><th>Size</th></tr>
 <tr><td>pinkyswear.js</td><td>Source code</td><td>about 4kB</td></tr>
 <tr><td>pinkyswear.min.js</td><td>Closure /w Advanced Optimization</td><td>828 bytes</td></tr>
-<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>460 bytes</td></tr>
+<tr><td>pinkyswear.min.js.gz</td><td>Closure + GZip'd</td><td>470 bytes</td></tr>
 </table>
 
 ## How to Include / Node.js ##
