@@ -125,14 +125,26 @@ This is a simple implementation of HTTP GET requests in browsers using XmlHttpRe
 >            return prom;
 >        }
 
-Here's how to use it for two subsequent GETs:
+This is how to retrieve a simple file:
+>        get('http://example.com/someFile.txt').then(function(status, txt) {
+>            console.log('Got my file: ', txt);
+>            return get('http://example.com/fileTwo.txt');
+>        }, function(status, statusText, txt) {
+>            console.log('Something bad happened. Got status code: ', status, statusText);
+>        });
+
+
+This example retrieves a file, waits 3s and gets a second one:
 >        get('http://example.com/fileOne.txt').then(function(status, txt) {
 >            console.log('Got first file: ', txt);
+>            return promiseTimeout(3000);
+>        }).then(function() {
+>            console.log('Waited 3s');
 >            return get('http://example.com/fileTwo.txt');
 >        }).then(function(status, txt) {
 >            console.log('Got second file: ', txt);
->        }).then(null, function(status, statusText, txt) {
->            console.log('Something bad happened. Got status code: ', status);
+>        }).then(null, function() {
+>            console.log('Something bad happened along the way.');
 >        });
 
 
