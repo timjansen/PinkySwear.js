@@ -92,7 +92,8 @@ It is possible to extend PinkySwear's promise object with custom methods by spec
 >         }
 >         var promise = pinkySwear(addHello);
 
-## Example ##
+## Examples ##
+### setTimeout ###
 A PinkySwear-powered timeout function that returns a promise:
 >         function promiseTimeout(timeoutMs) {
 >             var prom = pinkySwear();
@@ -107,6 +108,33 @@ Using the timeout:
 >         promiseTimeout(5000).then(function() {
 >             console.log('5s have passed.');
 >         });
+
+### XmlHttpRequest ###
+This is a simple implementation of HTTP GET requests in browsers using XmlHttpRequest. It returns a promise with the result or failure:
+>        function get(url) {
+>            var prom = pinkySwear();
+>            var xhr = new XMLHttpRequest();
+>            xhr.onreadystatechange = function() {
+>                if (xhr.readyState==4 && xhr.status==200)
+>                    prom(true, [xhr.status, xhr.responseText]);
+>                else 
+>                    prom(false, [xhr.status, xhr.statusText, xhr.responseText]);
+>            };
+>            oReq.open('get', url, true);
+>            oReq.send();
+>            return prom;
+>        }
+
+Here's how to use it for two subsequent GETs:
+>        get('http://example.com/fileOne.txt').then(function(status, txt) {
+>            console.log('Got first file: ', txt);
+>            return get('http://example.com/fileTwo.txt');
+>        }).then(function(status, txt) {
+>            console.log('Got second file: ', txt);
+>        }).then(null, function(status, statusText, txt) {
+>            console.log('Something bad happened. Got status code: ', status);
+>        });
+
 
 ## Licensing ##
 
