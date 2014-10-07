@@ -92,7 +92,21 @@ It is possible to extend PinkySwear's promise object with custom methods by spec
 >         }
 >         var promise = pinkySwear(addHello);
 
- 
+## Example ##
+A PinkySwear-powered timeout function that returns a promise:
+>         function promiseTimeout(timeoutMs) {
+>             var prom = pinkySwear();
+>             setTimeout(function() {
+>                 prom(true, []);
+>             }, timeoutMs);
+>             return prom; 
+>         }
+
+Using the timeout:
+>         console.log('Starting timeout now.');
+>         promiseTimeout(5000).then(function() {
+>             console.log('5s have passed.');
+>         });
 
 ## Licensing ##
 
