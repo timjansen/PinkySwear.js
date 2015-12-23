@@ -3,10 +3,8 @@
   "version": "2.2.2",
   "description": "Minimalistic Promises/A+ implementation, <500 bytes",
   "main": "pinkyswear.js",
-  "dependencies": {
-    "promises-aplus-tests": "~2.0.4"
-  },
   "devDependencies": {
+    "promises-aplus-tests": "~2.0.4",
     "mocha": "^1.18.2"
   },
   "scripts": {
