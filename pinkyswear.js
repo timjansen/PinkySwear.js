@@ -33,7 +33,15 @@
  * 
  * https://github.com/timjansen/PinkySwear.js
  */
-(function(target) {
+(function (root, factory) {
+	if (typeof define === 'function' && define.amd) {
+		define([], factory);
+	} else if (typeof module === 'object' && module.exports) {
+		module.exports = factory();
+	} else {
+		root.pinkySwear = factory();
+	}
+}(this, function() {
 	var undef;
 
 	function isFunction(f) {
@@ -51,7 +59,7 @@
 			setTimeout(callback, 0);
 	}
 
-	target[0][target[1]] = function pinkySwear(extend) {
+	return function pinkySwear(extend) {
 		var state;           // undefined/null = pending, true = fulfilled, false = rejected
 		var values = [];     // an array of values as arguments for the then() handlers
 		var deferred = [];   // functions to call when set() is invoked
@@ -113,5 +121,5 @@
         }
 		return set;
 	};
-})(typeof module == 'undefined' ? [window, 'pinkySwear'] : [module, 'exports']);
+}));
 
