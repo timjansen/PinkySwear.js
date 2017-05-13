@@ -1,6 +1,6 @@
 {
   "name": "pinkyswear",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "description": "Minimalistic Promises/A+ implementation, <500 bytes",
   "main": "pinkyswear.js",
   "devDependencies": {
@@ -15,7 +15,8 @@
     "url": "https://github.com/timjansen/PinkySwear.js.git"
   },
   "keywords": [
-    "promises", "promises-aplus"
+    "promises",
+    "promises-aplus"
   ],
   "author": "Tim Jansen",
   "license": "Public Domain",
