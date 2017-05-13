@@ -2,7 +2,7 @@
     <img src="http://promisesaplus.com/assets/logo-small.png" alt="Promises/A+ logo"
          title="Promises/A+ 1.1 compliant" align="right" />
 </a>
-PinkySwear.js 2.2.2
+PinkySwear.js 2.2.3
 ====================
 
 PinkySwear is a very small implementation of the Promises/A+ specification. After compilation with the
@@ -14,27 +14,30 @@ Minified's implementation does support assimilation though.
  
 ## Release History ##
 
-#####Version 2.2.2 released July 30, 2014
+Version 2.2.3 released May 13, 2017
+- Updated dev dependencies to avoid security vulnerabilities (thanks, kamilwylegala)
+
+Version 2.2.2 released July 30, 2014
 - Support extensions for promises created using then() (thanks, Zbyszek Tenerowicz)
 
-#####Version 2.2.1 released July 17, 2014
+Version 2.2.1 released July 17, 2014
 - Added extend function to constructor (thanks, Zbyszek Tenerowicz)
 
-#####Version 2.1 released June 6, 2014
+Version 2.1 released June 6, 2014
 - Removed always() and error(), since they were not in the spirit of a minimal implementation.
 - Updated Promises/A+ Compliance Test to 2.0.4
 
-#####Version 2.0.2, released May 10, 2014
+Version 2.0.2, released May 10, 2014
 - Use setImmediate() on platforms that support it (thanks, Carl-Erik Kopseng)
 
-#####Version 2.0.1, released Apr 3, 2014
+Version 2.0.1, released Apr 3, 2014
 - Fixed PinkySwear on IE8 which can't handle apply() without arguments (thanks, Luis Nabais)
 - Fix and test case for PinkySwear's multi-arguments extension (thanks, Carl-Erik Kopseng)
 
-#####Version 2.0, released Feb 10, 2014
+Version 2.0, released Feb 10, 2014
 Passes Promises/A+ Compliance Test 2.0.3. Allows obtaining state by calling promise function without arguments.
 
-#####Version 1.0, released Feb 09, 2013
+Version 1.0, released Feb 09, 2013
 First release. Passes Promises/A+ Compliance Test 1.10.0 with one exception (PinkySwear is function-based, which is
 allowed in the spec, but not in the old test suite).
  
